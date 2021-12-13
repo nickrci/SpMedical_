@@ -29,16 +29,16 @@ class App extends Component {
     console.warn('token do usuário')
     console.warn(tokenUsuario)
 
-    const resposta = await api.get('/consultas/minhas',{
+    const resposta = await api.get('/consultas/minhas', {
       headers: {
-        Authorization : 'Bearer ' + tokenUsuario
+        Authorization: 'Bearer ' + tokenUsuario
       }
     });
     console.warn('resposta')
     console.warn(resposta)
     const dadosApi = resposta.data;
-    
-    this.setState({ 
+
+    this.setState({
       listaConsultas: dadosApi,
       usuarioAtual: jwtDecode(tokenUsuario).role
     });
@@ -53,18 +53,20 @@ class App extends Component {
 
   render() {
     return (
-      
-      // this.state.usuarioAtual === '3' && (
-      //   <View>
-      //     <Text>Paciente</Text>
-      //   </View>
-      // ),
 
-      // this.state.usuarioAtual === '2' && (
-      //   <View>
-      //     <Text>Médico</Text>
-      //   </View>
-      // )
+      // this.state.listaConsultas.length === 0 (
+      
+      //   <Text>Não possui consultas</Text>
+        
+      //   ),
+        
+      this.state.usuarioAtual === '3' && (
+        <View>
+          <Text>Paciente</Text>
+        </View>
+      ),
+
+
 
       <View style={styles.main}>
         {/* Cabeçalho - Header */}
@@ -78,7 +80,7 @@ class App extends Component {
           </View>
           <View style={styles.mainHeaderLine} />
 
-          <Text style = {styles.nomeConsulta}>Paciente: <Text> </Text></Text>
+
         </View>
 
 
@@ -94,52 +96,103 @@ class App extends Component {
 
         </View>
       </View>
-      
+
     );
   }
 
 
   renderItem = ({ item }) => (
-    <View style={styles.cardConsulta}>
+   
+      
+    this.state.usuarioAtual === '3' ? (
 
 
-      <View style={styles.mainInfoCard}>
-        <View style={styles.dataInfo}>
-          <Text style={styles.chave}>​Data da consulta: <Text style={styles.valor}>{Intl.DateTimeFormat("pt-BR", {
-            year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric"
-          }).format(new Date(item.dataConsulta))}</Text></Text>
+      <View style={styles.cardConsulta}>
 
-        </View>
 
-        <View style={styles.pacInfo}>
-          <Text style={styles.chave}>Paciente: </Text>
-          <Text style={styles.valor}>​{(item.idClienteNavigation.nomeCliente)}</Text>
-        </View>
+        <View style={styles.mainInfoCard}>
 
-        <View style={styles.medInfo}> 
-          <Text style={styles.chave}>Medico: <Text style={styles.valor}>{(item.idMedicoNavigation.nomeMedico)}</Text> </Text>
-          
-        </View>
+          <View style={styles.pacInfo}>
+            <Text style={styles.chave}>Paciente: </Text>
+            <Text style={styles.valor}>​{(item.idClienteNavigation.nomeCliente)}</Text>
+          </View>
 
-        <View style={styles.espInfo}>
-          <Text style={styles.chave}>Especialidade:  <Text style={styles.valor}>{(item.idMedicoNavigation.idEspecialidadeMedicoNavigation.nomeEspecialidade)}</Text></Text>
+          <View style={styles.dataInfo}>
+            <Text style={styles.chave}>​Data da consulta: <Text style={styles.valor}>{Intl.DateTimeFormat("pt-BR", {
+              year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric"
+            }).format(new Date(item.dataConsulta))}</Text></Text>
 
-        </View>
+          </View>
 
-        <View style={styles.sitInfo}>
-          <Text style={styles.chave}>Situação: <Text style={styles.valor}>{(item.idSituacaoNavigation.tipoSituacao)}</Text></Text>
-          {/* <Text style={styles.chave}> ​{item.idSituacaoNavigation.situacao1} </Text> */}
-        </View>
 
-        {/* <View style={styles.addInfoCard}> <SituacaoConsulta situacao={item.idSituacaoNavigation.situacao1}>
+          <View style={styles.medInfo}>
+            <Text style={styles.chave}>Medico: <Text style={styles.valor}>{(item.idMedicoNavigation.nomeMedico)}</Text> </Text>
+
+          </View>
+
+          <View style={styles.espInfo}>
+            <Text style={styles.chave}>Especialidade:  <Text style={styles.valor}>{(item.idMedicoNavigation.idEspecialidadeMedicoNavigation.nomeEspecialidade)}</Text></Text>
+
+          </View>
+
+          <View style={styles.sitInfo}>
+            <Text style={styles.chave}>Situação: <Text style={styles.valor}>{(item.idSituacaoNavigation.tipoSituacao)}</Text></Text>
+            {/* <Text style={styles.chave}> ​{item.idSituacaoNavigation.situacao1} </Text> */}
+          </View>
+
+          {/* <View style={styles.addInfoCard}> <SituacaoConsulta situacao={item.idSituacaoNavigation.situacao1}>
 
           <Text style={styles.chave}> ​{item.idSituacaoNavigation.situacao1} </Text>
              
              </View>
         </View> */}
 
+        </View>
       </View>
-    </View>
+    )
+
+      : (
+
+        <View style={styles.cardConsulta}>
+
+
+          <View style={styles.mainInfoCard}>
+
+
+            <View style={styles.medInfo}>
+              <Text style={styles.chave}>Medico: <Text style={styles.valor}>{(item.idMedicoNavigation.nomeMedico)}</Text> </Text>
+
+            </View>
+
+            <View style={styles.pacInfo}>
+              <Text style={styles.chave}>Paciente: </Text>
+              <Text style={styles.valor}>​{(item.idClienteNavigation.nomeCliente)}</Text>
+            </View>
+
+            <View style={styles.dataInfo}>
+              <Text style={styles.chave}>​Data da consulta: <Text style={styles.valor}>{Intl.DateTimeFormat("pt-BR", {
+                year: "numeric", month: "short", day: "numeric", hour: "numeric", minute: "numeric"
+              }).format(new Date(item.dataConsulta))}</Text></Text>
+
+            </View>
+
+
+            <View style={styles.sitInfo}>
+              <Text style={styles.chave}>Situação: <Text style={styles.valor}>{(item.idSituacaoNavigation.tipoSituacao)}</Text></Text>
+              {/* <Text style={styles.chave}> ​{item.idSituacaoNavigation.situacao1} </Text> */}
+            </View>
+
+            {/* <View style={styles.addInfoCard}> <SituacaoConsulta situacao={item.idSituacaoNavigation.situacao1}>
+
+          <Text style={styles.chave}> ​{item.idSituacaoNavigation.situacao1} </Text>
+             
+             </View>
+        </View> */}
+
+          </View>
+        </View>
+      )
+
 
 
   )
@@ -162,7 +215,7 @@ const styles = StyleSheet.create({
   mainHeaderRow: {
     flexDirection: 'row',
   },
-  
+
   // texto do cabeçalho
   mainHeaderText: {
     fontSize: 16,
@@ -202,7 +255,7 @@ const styles = StyleSheet.create({
     width: 300,
     marginTop: 10,
     marginBottom: 10,
-    paddingTop: 20,
+    paddingTop: 10,
     height: 150,
     backgroundColor: "#ACC6E7",
     flexDirection: "row",
@@ -225,7 +278,7 @@ const styles = StyleSheet.create({
   chave: {
     color: "#000",
     fontSize: 14,
-    
+
   },
   valor: {
     color: "#000",
@@ -234,7 +287,7 @@ const styles = StyleSheet.create({
   dataInfo: {
     marginBottom: 8,
     justifyContent: "center",
-    
+
   },
   pacInfo: {
     flexDirection: "row",
