@@ -5,7 +5,8 @@ export default function Rodape() {
 
         <footer className="rodapePrincipal">
                 <section className="rodapePrincipal-patrocinadores">
-                <div className="container">
+                <div 
+                >
                     <p>Escola SENAI de Informática - 2021</p>
                 </div>
                 </section>

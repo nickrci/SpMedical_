@@ -17,8 +17,10 @@ export default function Home() {
         <div class="home_box_txt">
             <a>Trabalhamos para o melhor na sua saúde</a>
             <div class="home_box_txt2">
-                <span>Lorem Ipsum is simply dummy text of the printing and typesetting industry.   
-                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</span>
+                <span> O Hospital SpMedical, uma instituição que busca atender a todas as especialidades médicas, 
+                    em especial aquelas com procedimentos de alta complexidade, para você !!!
+                          
+                      </span>
             </div>
         </div>
     </div>
@@ -50,10 +52,10 @@ export default function Home() {
     <div class="about_us_txt">
         <a>sobre nós</a>
         <span>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-            industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap
-            into electronic typesetting, remaining essentially unchanged.
+            Somos um hospital que está localizado em São Paulo, destaca-se também pela grande produção científica 
+            e pelo ensino que o qualifica como uma instituição de excelência, tanto no cenário nacional quanto no internacional.
+            Oferecemos o que há de mais avançado em tecnologia.
+            Atendendo à grande demanda de pacientes que necessitam de nossos serviços.
         </span>
     </div>
 </div>
